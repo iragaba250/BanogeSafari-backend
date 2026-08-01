@@ -16,14 +16,16 @@ const sanitizePrefix = (value) => {
   return clean || 'hero';
 };
 
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, '..', 'uploads'),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    const prefix = sanitizePrefix(req.query.prefix);
-    cb(null, `${prefix}-${Date.now()}${ext}`);
-  },
-});
+const storage = process.env.VERCEL
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+      destination: path.join(__dirname, '..', 'uploads'),
+      filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname).toLowerCase();
+        const prefix = sanitizePrefix(req.query.prefix);
+        cb(null, `${prefix}-${Date.now()}${ext}`);
+      },
+    });
 
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();

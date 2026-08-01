@@ -1,0 +1,38 @@
+.tours-page {
+  padding-top: calc(var(--header-height) + 48px);
+}
+
+.tours-page__filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.tours-page__filter {
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+  text-transform: capitalize;
+}
+
+.tours-page__filter:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.tours-page__filter--active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.tours-page__filter--active:hover {
+  color: var(--color-white);
+}

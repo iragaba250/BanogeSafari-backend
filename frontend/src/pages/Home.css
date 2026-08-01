@@ -1,0 +1,76 @@
+.stats {
+  padding: 40px 0 32px;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.stats__item {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.stats__number {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stats__label {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 28px;
+}
+
+.popular-section {
+  padding: 56px 0;
+}
+
+.home__cta {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.testimonials-section {
+  padding: 56px 0;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.cta-section {
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%),
+    url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=80') center / cover no-repeat fixed;
+}
+
+.cta-section__content {
+  text-align: center;
+}
+
+.cta-section .section-title {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats__number {
+    font-size: 2rem;
+  }
+}

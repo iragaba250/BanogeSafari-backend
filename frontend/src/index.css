@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #2d7a3a;
+  --color-primary-dark: #1e5a28;
+  --color-primary-light: #4a9e5a;
+  --color-accent: #f59e0b;
+  --color-accent-dark: #d97706;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f9fafb;
+  --color-bg-dark: #111827;
+  --color-border: #e5e7eb;
+  --color-white: #ffffff;
+  --color-header-bg: rgba(255, 255, 255, 0.95);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --max-width: 1200px;
+  --header-height: 72px;
+  --transition: 0.3s ease;
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #bbf7d0;
+  --color-success-text: #15803d;
+  --color-pill-success-bg: #d1fae5;
+  --color-pill-success-text: #047857;
+  --color-pill-success-hover: #047857;
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #b45309;
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fecaca;
+  --color-error-text: #dc2626;
+  --color-pill-error-bg: #fee2e2;
+  --color-pill-error-text: #b91c1c;
+  --color-pill-error-hover: #b91c1c;
+  --color-info-bg: #eff6ff;
+  --color-info-text: #2563eb;
+  --color-info-hover: #2563eb;
+  --color-neutral-bg: #f3f4f6;
+  --color-danger: #dc2626;
+}
+
+[data-theme='dark'] {
+  --color-primary: #3a9b52;
+  --color-primary-dark: #2f7a41;
+  --color-primary-light: #55b76e;
+  --color-accent: #f59e0b;
+  --color-accent-dark: #d97706;
+  --color-text: #e5e7eb;
+  --color-text-light: #9ca3af;
+  --color-bg: #0f172a;
+  --color-bg-alt: #1e293b;
+  --color-bg-dark: #020617;
+  --color-border: #334155;
+  --color-white: #ffffff;
+  --color-header-bg: rgba(15, 23, 42, 0.95);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --color-success-bg: rgba(16, 185, 129, 0.15);
+  --color-success-border: rgba(16, 185, 129, 0.35);
+  --color-success-text: #6ee7b7;
+  --color-pill-success-bg: rgba(16, 185, 129, 0.15);
+  --color-pill-success-text: #34d399;
+  --color-pill-success-hover: #059669;
+  --color-warning-bg: rgba(245, 158, 11, 0.15);
+  --color-warning-text: #fbbf24;
+  --color-error-bg: rgba(239, 68, 68, 0.15);
+  --color-error-border: rgba(239, 68, 68, 0.35);
+  --color-error-text: #f87171;
+  --color-pill-error-bg: rgba(239, 68, 68, 0.15);
+  --color-pill-error-text: #fca5a5;
+  --color-pill-error-hover: #ef4444;
+  --color-info-bg: rgba(59, 130, 246, 0.15);
+  --color-info-text: #60a5fa;
+  --color-info-hover: #3b82f6;
+  --color-neutral-bg: #334155;
+  --color-danger: #ef4444;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: color var(--transition), background var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input,
+textarea,
+select {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-light);
+  opacity: 1;
+}
+
+select option {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-alt {
+  background: var(--color-bg-alt);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}

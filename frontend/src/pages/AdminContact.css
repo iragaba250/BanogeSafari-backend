@@ -1,0 +1,110 @@
+.admin-contact {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.admin-contact__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-contact__header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.admin-contact__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
+
+.admin-contact__card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.admin-contact__card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.admin-contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.admin-contact__field--full {
+  grid-column: 1 / -1;
+}
+
+.admin-contact__field .admin-input {
+  width: 100%;
+}
+
+.admin-contact__textarea {
+  resize: vertical;
+}
+
+.admin-contact__image-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-contact__image-row .admin-input {
+  flex: 1;
+}
+
+.admin-contact__file {
+  font-size: 0.85rem;
+}
+
+.admin-contact__preview {
+  margin-top: 12px;
+  max-width: 480px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.admin-contact__preview img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.admin-contact__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-contact__messages {
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .admin-contact {
+    padding: 24px;
+  }
+
+  .admin-contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-contact__image-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

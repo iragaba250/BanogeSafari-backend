@@ -75,10 +75,44 @@ The backend serves the built frontend from `frontend/dist`, so you only host one
    - `PUBLIC_URL` → `https://your-app.onrender.com`
 4. Deploy. After the first deploy, run the seed once to load demo data.
 
-> **Note:** uploaded images are stored on the server disk (`backend/uploads/`), which works on
-> Render/Railway/VPS but is wiped on redeploys. For persistent images on serverless platforms
-> (Vercel/Netlify), add S3/Cloudinary and point the `buildUrl` helper in
-> `backend/controllers/uploadController.js` at it.
+## Deploying on Vercel
+
+Vercel builds the frontend (`frontend/dist`) and runs the backend as a serverless function
+in `api/index.js`. All `/api/*` requests are proxied to it, so frontend and API share one domain.
+
+1. Push this repo to GitHub and import it on [Vercel](https://vercel.com).
+2. **Required environment variables** (Project → Settings → Environment Variables) — without these
+   the API will not work and sign-in fails:
+   - `MONGO_URI` → your MongoDB Atlas URI
+   - `JWT_SECRET` → long random string (32+ chars). The API refuses to start without it.
+   - `CORS_ORIGIN` → your deployed domain, e.g. `https://your-app.vercel.app`
+   - `PUBLIC_URL` → same as `CORS_ORIGIN`
+   - Optional: `ADMIN_EMAIL`, `ADMIN_PASSWORD` — credentials for the auto-seeded admin.
+3. Deploy. On the first request the API automatically creates the default admin
+   (`admin@banoge.com` / `admin123`, or your `ADMIN_EMAIL`/`ADMIN_PASSWORD`) when the database
+   is empty, so sign-in works without running a seed script.
+
+> **Vercel caveats**
+> - The serverless function only starts with a valid `JWT_SECRET` (32+ chars) and `MONGO_URI`.
+> - For image uploads, set the Cloudinary keys (see below) — the server disk does **not** persist
+>   on serverless platforms.
+
+> **Uploaded images** are stored on the server disk (`backend/uploads/`) **only when no
+> Cloudinary keys are set** (i.e. local development). In production set `CLOUDINARY_CLOUD_NAME`,
+> `CLOUDINARY_API_KEY` and `CLOUDINARY_API_SECRET` (free account at cloudinary.com) and every
+> upload is stored in the cloud, so images survive restarts, sleep, and redeploys.
+
+### Cloudinary setup (recommended, required for reliable production uploads)
+
+1. Create a free account at [cloudinary.com](https://cloudinary.com) — no credit card needed.
+2. From the dashboard copy your **Cloud Name**, **API Key** and **API Secret**.
+3. Add them as environment variables on your host (and in `backend/.env` for local testing):
+   - `CLOUDINARY_CLOUD_NAME`
+   - `CLOUDINARY_API_KEY`
+   - `CLOUDINARY_API_SECRET`
+
+Once set, admin uploads (hero, gallery, tour images) go straight to Cloudinary and the cloud
+URL is saved in MongoDB — the images will keep working even after the server restarts.
 
 ## Alternative: separate hosting
 

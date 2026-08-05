@@ -1,31 +1,10 @@
 import multer from 'multer';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.avif'];
 const ALLOWED_MIME_PREFIX = 'image/';
 
-const sanitizePrefix = (value) => {
-  const clean = String(value || 'hero')
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9-]/g, '')
-    .slice(0, 40);
-  return clean || 'hero';
-};
-
-const storage = process.env.VERCEL
-  ? multer.memoryStorage()
-  : multer.diskStorage({
-      destination: path.join(__dirname, '..', 'uploads'),
-      filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname).toLowerCase();
-        const prefix = sanitizePrefix(req.query.prefix);
-        cb(null, `${prefix}-${Date.now()}${ext}`);
-      },
-    });
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();

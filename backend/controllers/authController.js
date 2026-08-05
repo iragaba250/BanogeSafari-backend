@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Booking from '../models/Booking.js';
 import { errorResponse } from '../utils/errorHandler.js';
+import { sendSignupEmail } from '../utils/email.js';
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
@@ -26,6 +27,8 @@ export const signup = async (req, res) => {
 
     const user = await User.create({ name, email, password });
     const token = signToken(user._id);
+
+    sendSignupEmail({ name: user.name, email: user.email });
 
     res.status(201).json({
       token,

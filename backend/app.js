@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
 import fs from 'fs';
@@ -49,15 +48,40 @@ app.use(
     },
   })
 );
-app.use(
-  cors({
-    origin(origin, cb) {
-      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-      cb(new Error('Not allowed by CORS'));
-    },
-    credentials: true,
-  })
-);
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  let sameOrigin = false;
+  if (origin) {
+    try {
+      sameOrigin = new URL(origin).host === req.headers.host;
+    } catch {
+      sameOrigin = false;
+    }
+  }
+
+  if (!origin || sameOrigin || allowedOrigins.includes(origin)) {
+    if (origin) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Vary', 'Origin');
+    }
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') {
+      res.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+      );
+      res.setHeader(
+        'Access-Control-Allow-Headers',
+        req.headers['access-control-request-headers'] || 'Content-Type, Authorization'
+      );
+      return res.sendStatus(204);
+    }
+    return next();
+  }
+
+  res.status(403).json({ message: 'Not allowed by CORS' });
+});
 app.use(express.json({ limit: '100kb' }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

@@ -9,7 +9,7 @@ export default function TourCard({ tour }) {
   const id = tour._id || tour.id;
 
   return (
-    <Link to={`/tours/${id}`} className="tour-card">
+    <Link to={`/tours/${id}`} state={{ tour }} className="tour-card">
       <div className="tour-card__image">
         <img src={image} alt={title} loading="lazy" />
         <span className="tour-card__duration">{duration}</span>

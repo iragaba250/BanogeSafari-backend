@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useSettings } from '../context/SettingsContext';
 import { formatPrice } from '../siteDefaults';
 import Button from '../components/Button';
@@ -9,8 +9,11 @@ import { API } from '../api';
 
 export default function TourDetail() {
   const { id } = useParams();
+  const location = useLocation();
   const { site } = useSettings();
-  const [tour, setTour] = useState(null);
+  const initial = location.state?.tour;
+  const hasInitialRef = useRef(Boolean(initial));
+  const [tour, setTour] = useState(initial || null);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
@@ -26,10 +29,7 @@ export default function TourDetail() {
           setNotFound(false);
         }
       } catch {
-        if (!cancelled) {
-          setTour(null);
-          setNotFound(true);
-        }
+        if (!cancelled && !hasInitialRef.current) setNotFound(true);
       }
     };
 

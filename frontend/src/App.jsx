@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Tours from './pages/Tours';
+import TourDetail from './pages/TourDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
@@ -42,6 +43,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/tours" element={<Tours />} />
+              <Route path="/tours/:id" element={<TourDetail />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />

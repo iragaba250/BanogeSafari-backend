@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
 import { formatPrice } from '../siteDefaults';
@@ -29,6 +30,8 @@ const paymentLabel = (value) =>
 export default function Booking() {
   const { user, token } = useAuth();
   const { site } = useSettings();
+  const [searchParams] = useSearchParams();
+  const preselectId = searchParams.get('tour');
   const fmt = (amount) => formatPrice(amount, site.currency);
   const [tours, setTours] = useState([]);
   const [step, setStep] = useState(0);
@@ -49,9 +52,16 @@ export default function Booking() {
   useEffect(() => {
     fetch(`${API}/api/tours`)
       .then((r) => r.json())
-      .then((data) => setTours(data.tours || []))
+      .then((data) => {
+        const list = data.tours || [];
+        setTours(list);
+        if (preselectId) {
+          const match = list.find((t) => t._id === preselectId || String(t.id) === preselectId);
+          if (match) setTour(match);
+        }
+      })
       .catch(() => {});
-  }, []);
+  }, [preselectId]);
 
   const displayName = info.name || user?.name || '';
   const displayEmail = info.email || user?.email || '';

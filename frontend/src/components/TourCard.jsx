@@ -9,16 +9,14 @@ export default function TourCard({ tour }) {
   const id = tour._id || tour.id;
 
   return (
-    <article className="tour-card">
+    <Link to={`/tours/${id}`} className="tour-card">
       <div className="tour-card__image">
         <img src={image} alt={title} loading="lazy" />
         <span className="tour-card__duration">{duration}</span>
       </div>
       <div className="tour-card__body">
         <div className="tour-card__location">{location}</div>
-        <h3 className="tour-card__title">
-          <Link to={`/tours/${id}`}>{title}</Link>
-        </h3>
+        <h3 className="tour-card__title">{title}</h3>
         <p className="tour-card__desc">{description}</p>
         <div className="tour-card__footer">
           <div className="tour-card__rating">
@@ -31,6 +29,6 @@ export default function TourCard({ tour }) {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -146,7 +146,11 @@ export default function Booking() {
     return true;
   };
 
-  const next = () => canNext() && setStep((s) => s + 1);
+  const next = () => {
+    if (!canNext()) return;
+    setStep((s) => s + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const back = () => setStep((s) => Math.max(0, s - 1));
 
   const handleSubmit = async () => {

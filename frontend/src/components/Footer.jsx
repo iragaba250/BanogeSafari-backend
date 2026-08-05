@@ -54,7 +54,7 @@ export default function Footer() {
               {isImageUrl(site.logoIcon) ? (
                 <img className="footer__logo-img" src={site.logoIcon} alt={`${site.name} logo`} />
               ) : (
-                <span>{site.logoIcon}</span>
+                <span className="footer__logo-icon">{site.logoIcon}</span>
               )}{' '}
               {site.name}
             </Link>

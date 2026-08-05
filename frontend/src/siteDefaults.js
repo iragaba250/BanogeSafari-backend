@@ -1,6 +1,6 @@
 export const siteDefaults = {
   name: 'BANOGE safari',
-  logoIcon: '🏕',
+  logoIcon: '/logo.png',
   tagline:
     'Explore the world with curated travel experiences. We craft unforgettable journeys that create lifelong memories.',
   currency: 'USD',

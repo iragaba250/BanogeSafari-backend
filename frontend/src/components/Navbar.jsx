@@ -38,6 +38,18 @@ export default function Navbar() {
     return () => document.removeEventListener('click', onDocClick);
   }, []);
 
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = prevOverflow;
+    }
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [menuOpen]);
+
   return (
     <nav className="navbar">
       <div className="container navbar__inner">

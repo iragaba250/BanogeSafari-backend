@@ -36,3 +36,19 @@
 .tours-page__filter--active:hover {
   color: var(--color-white);
 }
+
+@media (max-width: 640px) {
+  .tours-page {
+    padding-top: calc(var(--header-height) + 32px);
+  }
+
+  .tours-page__filters {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .tours-page__filter {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}

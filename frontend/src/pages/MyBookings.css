@@ -138,6 +138,11 @@
   color: var(--color-text-light);
 }
 
+.my-bookings__meta span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .my-bookings__meta strong {
   display: block;
   font-size: 0.75rem;

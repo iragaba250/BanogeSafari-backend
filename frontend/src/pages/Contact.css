@@ -166,3 +166,13 @@
     padding: 24px;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-form-wrapper {
+    padding: 20px;
+  }
+  .contact-hero {
+    padding-top: calc(var(--header-height) + 56px);
+    padding-bottom: 56px;
+  }
+}

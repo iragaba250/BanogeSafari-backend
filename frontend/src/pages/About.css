@@ -144,6 +144,10 @@
   .about-team {
     grid-template-columns: 1fr;
   }
+  .about-hero {
+    padding-top: calc(var(--header-height) + 56px);
+    padding-bottom: 56px;
+  }
 }
 
 @media (max-width: 480px) {

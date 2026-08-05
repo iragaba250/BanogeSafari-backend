@@ -93,3 +93,9 @@
     gap: 10px;
   }
 }
+
+@media (max-width: 380px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

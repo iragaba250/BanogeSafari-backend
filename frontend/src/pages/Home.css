@@ -73,4 +73,13 @@
   .stats__number {
     font-size: 2rem;
   }
+  .cta-section {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }

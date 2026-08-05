@@ -7,6 +7,15 @@ import './MyBookings.css';
 
 import { API } from '../api';
 
+const paymentLabels = {
+  card: 'Credit / Debit Card',
+  paypal: 'PayPal',
+  bank: 'Bank Transfer',
+  cash: 'Cash on Arrival',
+};
+
+const paymentLabel = (value) => paymentLabels[value] || value;
+
 export default function MyBookings() {
   const { user, token } = useAuth();
   const { site } = useSettings();
@@ -84,7 +93,7 @@ export default function MyBookings() {
                     <strong>Total</strong> {formatPrice(b.totalPrice, site.currency)}
                   </span>
                   <span>
-                    <strong>Payment</strong> {b.paymentMethod}
+                    <strong>Payment</strong> {paymentLabel(b.paymentMethod)}
                   </span>
                 </div>
                 {b.notes && <p className="my-bookings__notes">Note: {b.notes}</p>}

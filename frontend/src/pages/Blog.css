@@ -190,6 +190,7 @@
 
 .blog-post__meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   font-size: 0.85rem;
   color: var(--color-text-light);

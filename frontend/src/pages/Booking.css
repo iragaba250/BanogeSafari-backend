@@ -27,6 +27,18 @@
   padding-bottom: 4px;
 }
 
+@media (max-width: 960px) {
+  .booking-stepper {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .booking-stepper__step {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
 .booking-stepper__step {
   display: flex;
   align-items: center;
@@ -81,6 +93,7 @@
   grid-template-columns: 1fr 320px;
   gap: 28px;
   align-items: start;
+  min-width: 0;
 }
 
 .booking-content {
@@ -89,6 +102,7 @@
   border-radius: var(--radius-md);
   padding: 40px;
   min-height: 420px;
+  min-width: 0;
 }
 
 .booking-content__title {
@@ -255,6 +269,21 @@
   border-radius: var(--radius-md);
   background: var(--color-bg);
   transition: all var(--transition);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.booking-payment__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.booking-payment__desc {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  overflow-wrap: anywhere;
 }
 
 .booking-payment:hover {
@@ -271,26 +300,16 @@
   font-size: 1.4rem;
   line-height: 1;
   color: var(--color-border);
+  flex-shrink: 0;
 }
 
 .booking-payment--selected .booking-payment__radio {
   color: var(--color-primary);
 }
 
-.booking-payment__info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .booking-payment__info strong {
   font-size: 0.95rem;
   font-weight: 700;
-}
-
-.booking-payment__desc {
-  font-size: 0.82rem;
-  color: var(--color-text-light);
 }
 
 .booking-price-breakdown {
@@ -322,6 +341,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  min-width: 0;
 }
 
 .booking-review__group {
@@ -332,6 +352,8 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .booking-review__group--total {
@@ -396,14 +418,19 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
+  min-width: 0;
 }
 
 .booking-summary__rows dt {
   color: var(--color-text-light);
+  flex-shrink: 0;
 }
 
 .booking-summary__rows dd {
   font-weight: 600;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 .booking-summary__total {
@@ -556,5 +583,38 @@
   .booking-info,
   .booking-review {
     grid-template-columns: 1fr;
+  }
+
+  .booking-payments {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-content {
+    padding: 20px;
+  }
+
+  .booking-summary {
+    padding: 20px;
+  }
+
+  .booking-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .booking-nav > div {
+    display: flex;
+  }
+
+  .booking-nav .btn {
+    width: 100%;
+  }
+
+  .booking-confirmation__meta span {
+    width: 100%;
+    text-align: center;
   }
 }
